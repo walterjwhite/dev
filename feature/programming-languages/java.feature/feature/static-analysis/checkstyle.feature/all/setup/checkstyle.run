@@ -1,0 +1,12 @@
+#!/bin/sh
+
+import git:install/download.sh
+
+_download https://github.com/checkstyle/checkstyle/releases/download/checkstyle-${_CONF_DEV_CHECKSTYLE_VERSION}/checkstyle-${_CONF_DEV_CHECKSTYLE_VERSION}-all.jar
+_download_install_file _LIBRARY_APPLICATION_PATH_/checkstyle/checkstyle.jar
+
+_download https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml
+_download_install_file _LIBRARY_APPLICATION_PATH_/checkstyle/checks/google_checks.xml
+
+_download https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/sun_checks.xml
+_download_install_file _LIBRARY_APPLICATION_PATH_/checkstyle/checks/sun_checks.xml

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+
+opwd=$PWD
+
+git clone https://github.com/grafana/xk6-disruptor.git 2>/dev/null || _error "Error cloning https://github.com/grafana/xk6-disruptor.git"
+cd xk6-disruptor
+
+unset GOPATH
+xk6 build --output xk6-disruptor --with github.com/grafana/xk6-disruptor=. 2>/dev/null || _error "Error building xk6-disruptor"
+_sudo cp xk6-disruptor $_CONF_INSTALL_BIN_PATH/k6
+
+cd $opwd

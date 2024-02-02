@@ -1,0 +1,3 @@
+uri=https://github.com/golangci/golangci-lint/releases/download/v1.43.0/golangci-lint-1.43.0-freebsd-amd64.tar.gz
+signature=7e1ab0d0808b4b91caae6e0c6536abc20bd309923e8c98ad554fba6c066d4957
+filename=golangci-lint-1.43.0-freebsd-amd64.tar.gz
