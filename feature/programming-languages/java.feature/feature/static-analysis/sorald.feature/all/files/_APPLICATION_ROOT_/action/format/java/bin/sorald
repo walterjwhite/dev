@@ -1,0 +1,16 @@
+#!/bin/sh
+
+[ ! -e "$_SORALD_JAR" ] && _error "Sorald is disabled"
+
+_sorald_fix() {
+	local _rule=$1
+	local _file=$2
+
+	java $_OPTN_DEV_SORALD_OPTIONS -jar $_SORALD_JAR repair --rule-key=$_rule --source=$_file
+}
+
+HOME=$_SORALD_SONAR_JAVA_PLUGIN_HOME_DIRECTORY
+
+for _SORALD_RULE in $($_CONF_INSTALL_GNU_GREP -P '^S[\d]{4}:' $_CONF_INSTALL_APPLICATION_LIBRARY_PATH/action/format/java/.sorald | awk -F': ' {'print$1'}); do
+	_sorald_fix $_SORALD_RULE .
+done

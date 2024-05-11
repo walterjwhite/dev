@@ -1,0 +1,5 @@
+#!/bin/sh
+
+import git:install/link.sh
+
+_link /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code $_CONF_INSTALL_BIN_PATH

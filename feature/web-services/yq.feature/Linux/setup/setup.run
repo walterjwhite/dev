@@ -1,0 +1,10 @@
+#!/bin/sh
+
+case $_SUB_PLATFORM in
+    Ubuntu)
+        snap install yq
+        ;;
+    *)
+        _warn "Unsupported distribution, $_SUB_PLATFORM"
+        ;;
+esac

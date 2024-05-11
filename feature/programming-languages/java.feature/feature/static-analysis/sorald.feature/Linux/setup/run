@@ -1,0 +1,13 @@
+#!/bin/sh
+
+import git:install/download.sh
+
+_info "Installing Sorald Java JAR"
+_download https://repo1.maven.org/maven2/se/kth/castor/sorald/$_SORALD_VERSION/$_SORALD_FILENAME
+_download_install_file $_SORALD_JAR
+
+rm -rf $_SONAR_JAVA_PLUGIN_HOME_DIRECTORY
+
+_info "Installing Sonar Java JAR"
+_download https://repo1.maven.org/maven2/org/sonarsource/java/sonar-java-plugin/$_SONAR_PLUGIN_VERSION/$_SONAR_PLUGIN_FILENAME
+_download_install_file $_SONAR_JAR

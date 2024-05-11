@@ -1,0 +1,26 @@
+#!/bin/sh
+
+
+import git:install/download.sh
+import git:install/extract.sh
+import git:install/link.sh
+
+_DBEAVER_INSTALL_PATH=/usr/local/dbeaver/community
+
+case $_ARCHITECTURE in
+    amd64|aarch64)
+        ;;
+    *)
+        _warn "Unsupported architecture: $_ARCHITECTURE"
+        return 1
+        ;;
+esac
+
+: ${_CONF_DEV_DBEAVER_EDITION:=ce}
+
+_download "https://dbeaver.io/files/dbeaver-${_CONF_DEV_DBEAVER_EDITION}-latest-linux.gtk.$_ARCHITECTURE-nojdk.tar.gz"
+
+_CLEAN=$_DBEAVER_INSTALL_PATH _USE_SUDO=1 _extract "$_DOWNLOADED_FILE" "$_DBEAVER_INSTALL_PATH"
+
+$_link $_CONF_INSTALL_BIN_PATH/dbeaver $_DBEAVER_INSTALL_PATH/dbeaver
+$_SUDO_CMD chmod +x $_CONF_INSTALL_BIN_PATH/dbeaver

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+$_CONF_INSTALL_GNU_GREP -Poh '@[\w]+' "$@" |
+	sort -u

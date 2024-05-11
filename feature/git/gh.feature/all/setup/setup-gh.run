@@ -1,0 +1,10 @@
+if [ ! -e ~/.config/gh/hosts.yml ]; then
+	if [ -z "$_NON_INTERACTIVE" ]; then
+	    _warn "Configuring GH"
+	    gh auth login
+	else
+		_warn "Unable to configure GH - non-interactive"
+	fi
+else
+    _warn "GH appears to already be configured, skipping ..."
+fi
