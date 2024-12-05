@@ -1,0 +1,5 @@
+#!/bin/sh
+
+import helper.sh
+
+_helper_main "$@"

@@ -1,0 +1,32 @@
+#!/bin/sh
+
+import git:install/download.sh
+import git:install/extract.sh
+import git:install/link.sh
+
+_INTELLIJ_INSTALL_PATH=/usr/local/intellij
+
+case $_ARCHITECTURE in
+    amd64)
+        ;;
+    aarch64|arm64)
+        INTELLIJ_ARCHITECTURE_SUFFIX=ARM64
+        ;;
+    *)
+        _warn "Unsupported architecture: $_ARCHITECTURE"
+        return 1
+        ;;
+esac
+
+_INTELLIJ_VERSION=2022.3.2
+: ${_CONF_DEV_INTELLIJ_EDITION:=U}
+
+_download "https://download.jetbrains.com/idea/ideaI${_CONF_DEV_INTELLIJ_EDITION}-$_INTELLIJ_VERSION-${_ARCHITECTURE}.tar.gz"
+
+_CLEAN=$_INTELLIJ_INSTALL_PATH _USE_SUDO=1 _extract "$_DOWNLOADED_FILE" "$_INTELLIJ_INSTALL_PATH"
+
+for file_to_symlink in $(find $_INTELLIJ_INSTALL_PATH -type f -name idea.sh -exec $_SUDO_CMD); do
+	_link $file_to_symlink $_CONF_INSTALL_BIN_PATH/intellij
+done
+
+$_SUDO_CMD chmod +x $_CONF_INSTALL_BIN_PATH/intellij

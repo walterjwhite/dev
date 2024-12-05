@@ -1,0 +1,6 @@
+#!/bin/sh
+
+mvn help:effective-pom | grep -csq com.uber.nullaway || {
+	_warn "Please install Uber Null Away into $PWD"
+	_detail "https://github.com/uber/NullAway/wiki/Configuration"
+}

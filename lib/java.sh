@@ -1,3 +1,0 @@
-#!/bin/sh
-
-_GOOGLE_JAVA_FORMAT_JAR=_LIBRARY_PATH/_APPLICATION_NAME/google.java.format.jar

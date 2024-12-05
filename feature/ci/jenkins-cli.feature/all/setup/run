@@ -1,0 +1,6 @@
+#!/bin/sh
+
+import git:install/download.sh
+
+_download $_CONF_DEV_JENKINS_URL/jnlpJars/jenkins-cli.jar
+_download_install_file $_CONF_DEV_JENKINS_JAR

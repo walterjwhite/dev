@@ -1,0 +1,1 @@
+: ${_OPTN_DEV_SORALD_OPTIONS:='-Dos.name=Linux'}

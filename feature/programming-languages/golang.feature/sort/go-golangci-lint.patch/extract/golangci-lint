@@ -1,0 +1,6 @@
+_version=1.43.0
+
+_SOURCE=golangci-lint-1.43.0-freebsd-amd64.tar.gz
+_CONTENTS=golangci-lint-1.43.0-freebsd-amd64/golangci-lint
+
+_TARGET=/usr/local/bin/golangci-lint

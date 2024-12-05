@@ -1,0 +1,13 @@
+#!/bin/sh
+
+git init .
+
+cat _APPLICATION_LIBRARY_PATH_/nodejs/.gitignore >>.gitignore
+cp _APPLICATION_LIBRARY_PATH_/nodejs/.npmignore .
+
+cp _APPLICATION_LIBRARY_PATH_/nodejs/package.json .
+_warn "Please update package.json"
+
+_warn "Setting up .babelrc.js"
+npm install @babel/cli @babel/core @babel/preset-env --save-dev
+cp _APPLICATION_LIBRARY_PATH_/nodejs/.babelrc.js .

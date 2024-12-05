@@ -1,0 +1,41 @@
+#!/bin/sh
+
+if [ ! -e .application ]; then
+	_error ".application does not exist, unable to run" 1
+fi
+
+_application_runner() {
+	_RUNNER=$_CONF_INSTALL_APPLICATION_LIBRARY_PATH/action/run/${_APPLICATION_TYPE}.sh
+
+	if [ ! -e $_RUNNER ]; then
+		_error "Application Runner does not exist, $_RUNNER" 1
+	fi
+
+	. $_RUNNER
+	. .application/$_APPLICATION_TYPE
+	_run "$@"
+}
+
+for _ARG in "$@"; do
+	case $_ARG in
+	--type=* | -t=*)
+		set -- $(printf '%s' $* | sed -e "s/$_ARG//")
+
+		_APPLICATION_TYPE="${_ARG#*=}"
+		;;
+	esac
+done
+
+[ $_DEV_CLEAR_LOG ] && rm -rf .log
+
+if [ -n "$_APPLICATION_TYPE" ]; then
+	_application_runner "$@"
+	return $?
+fi
+
+for _APPLICATION_TYPE in $(ls .application); do
+	_LANGUAGE=$_APPLICATION_TYPE
+	_application_runner "$@"
+
+	break
+done

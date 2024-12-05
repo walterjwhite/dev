@@ -1,0 +1,12 @@
+#!/bin/sh
+
+import git:install/time.sh
+
+case $_SUB_PLATFORM in
+    Ubuntu)
+        _USE_SUDO=1 _timeout $_CONF_INSTALL_STEP_TIMEOUT "snap install gitkraken" snap install gitkraken
+        ;;
+    *)
+        _warn "Unsupported platform $_PLATFORM"
+        ;;
+esac
